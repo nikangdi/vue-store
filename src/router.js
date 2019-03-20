@@ -8,6 +8,7 @@ import Member from './components/member.vue'
 import Search from './components/search.vue'
 import NewsList from './components/news/NewsList.vue' 
 import NewsInfo from './components/news/NewsInfo.vue'
+import PhotoList from './components/photos/PhotoList.vue'
 
 Vue.use(Home)
 Vue.use(Shopcar)
@@ -15,7 +16,7 @@ Vue.use(Member)
 Vue.use(Search)
 Vue.use(NewsList)
 Vue.use(NewsInfo)
-
+Vue.use(PhotoList)
 
 // 3. 创建路由对象
 var router = new VueRouter({
@@ -25,7 +26,10 @@ var router = new VueRouter({
     {
       path:'/home',component:Home,
       children:
-        [{path:'/newslist',component:NewsList}]
+        [
+          {path:'newslist',component:NewsList},
+          {path:'photolist',component:PhotoList},
+      ]
         },
     {path:'./home/newslist/:id',component:NewsInfo},
     {path:'/shopcar',component:Shopcar},
