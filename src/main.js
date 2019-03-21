@@ -6,8 +6,11 @@ Vue.use(VueRouter)
 
 import app from './App.vue'
 import VueResource from 'vue-resource'
-
 Vue.use(VueResource)
+
+import VuePreview from 'vue-preview'
+// 图片预览插件
+Vue.use(VuePreview)
 
 //全局配置  请求的根路径
 Vue.http.options.root='http://www.escook.cn:3000';

@@ -4,7 +4,7 @@
         <div id="slider" class="mui-slider">
 				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
 					<div class="mui-scroll">
-						<a :class="['mui-control-item', item.id==0 ? 'mui-active': '']" v-for="item in cates" :key="item.id" @click="getPhotoListByCateId(item.id)">
+						<a :class="['mui-control-item', item.id==0 ? 'mui-active': '']" v-for="item in cates" :key="item.id" @tab="getPhotoListByCateId(item.id)">
 							{{item.title}}
 						</a>
 					</div>
@@ -13,13 +13,13 @@
         <!-- topbar滚动nav结束 -->
         <!-- 图片加载（懒加载） 开始--> 
         <ul class="photo-list">
-              <li v-for="item in list" :key="item.id" >
+              <router-link v-for="item in list" :key="item.id" :to="'/home/photoinfo' + item.id"  tag="li">
                 <img v-lazy="item.img_url">
                 <div class="info">
                     <h1 class="info-title">{{item.title}}</h1>
                     <div class="info-body">{{item.zhaiyao}}</div>
                 </div>
-             </li>
+             </router-link>
         </ul>
         <!-- 图片加载（懒加载） 结束-->
 

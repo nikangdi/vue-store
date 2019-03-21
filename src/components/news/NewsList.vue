@@ -2,7 +2,7 @@
     <div>
         <ul class="mui-table-view">
 				<li class="mui-table-view-cell mui-media" v-for="item in newsList" :key="item.id" >
-					<router-link to="'/home/newsinfo/'+item.id">
+					<router-link :to="'/home/newsinfo/'+item.id">
                     <!-- 改造路由 -->
 						<img class="mui-media-object mui-pull-left" :src="item.image_url">
 						<div class="mui-media-body">

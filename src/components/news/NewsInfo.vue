@@ -9,7 +9,7 @@
         <dic class="content" v-html="newsData.content"></dic>
 
         <!-- 评论子组件 -->
-        <comment-box :id="this.id"></comment-box>
+        <comment-box :id="id"></comment-box>
 
     </div>
 </template>
@@ -19,8 +19,11 @@ import comment from '../subcomponent/comment.vue'
 
 export default {
     data(){
-        id: this.$route.params.id;
-        newsData:{};
+        return{
+            id: this.$route.params.id,
+            newsData:{},
+        }
+        
     },
     created(){
         this.getNewsInfo();
