@@ -1,7 +1,12 @@
 <template>
+
   <div class="app-container">
     <!-- 顶部header部分 -->
-    <mt-header fixed title="程序员"></mt-header>
+    <mt-header fixed title="程序员">
+      <span  slot="left" @click="goBack">
+            <mt-button icon="back" v-show='flag'>返回</mt-button>
+      <span>
+    </mt-header>
 
     <!-- 中间router-view部分 -->
   <transition > 
@@ -22,7 +27,7 @@
 				<span class="mui-tab-label">会员</span>
 			</router-link>
 			<router-link class="mui-tab-item-llb" to="/shopcar">
-				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge">0</span></span>
+				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge">{{ this.$store.getters.getGoodsCountAndAmount.count }}</span></span>
 				<span class="mui-tab-label">购物车</span>
 			</router-link>
 			<router-link class="mui-tab-item-llb" to="/search">
@@ -35,6 +40,36 @@
 </template>
 
 <script>
+export default {
+    data(){
+      return {
+        flag: false  //会有问题  即当你在一个页面刷新时   因为flag默认值为 false  所以会  默认隐藏后退按钮  即使不是首页
+      }
+    },created(){
+      //为了解决刷新时默认flag影响back按钮隐藏的问题
+      if($route.path ==='/'){
+        this.flag = false;
+      }else{
+        this.flag=true;
+      }
+    },
+    methods:{
+      goBack(){
+        this.$router.go(-1);
+      },
+    },watch:{
+      //监听路由地址，当路由为首页的时候，隐藏掉返回按钮
+      '$route.path':function(newVal){
+        if(newVal == '/home'){
+          this.flag = false;
+        }else{
+          this.flag=true;
+        }
+      }
+
+    },
+
+}
 </script>
 
 
